@@ -1,10 +1,10 @@
-import React, { useState } from 'eact';
+import React, { useState } from 'react';
 import './style.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   const [daysPerWeek, setDaysPerWeek] = useState(0);
-  const [subjects, setSubjects] = useState([]);
+  const [subjects, setSubjects] = useState([{ subject: '', credits: 0 }]);
   const [studyHoursPerDay, setStudyHoursPerDay] = useState(0);
   const [breakInterval, setBreakInterval] = useState(0);
   const [breakDuration, setBreakDuration] = useState(0);
@@ -87,7 +87,7 @@ function App() {
                   value={subject.subject}
                   onChange={(event) =>
                     setSubjects(
-                      subjects.map((s, i) => (i === index? { subject: event.target.value, credits: s.credits } : s))
+                      subjects.map((s, i) => (i === index ? { subject: event.target.value, credits: s.credits } : s))
                     )
                   }
                   placeholder="Subject"
@@ -99,7 +99,7 @@ function App() {
                   value={subject.credits}
                   onChange={(event) =>
                     setSubjects(
-                      subjects.map((s, i) => (i === index? { subject: s.subject, credits: event.target.value } : s))
+                      subjects.map((s, i) => (i === index ? { subject: s.subject, credits: event.target.value } : s))
                     )
                   }
                   placeholder="Credit Hours"
@@ -140,5 +140,23 @@ function App() {
           <div className="form-group">
             <label htmlFor="breakDuration">Break duration (in minutes):</label>
             <input
-              type="number"
-              id="
+type="number"
+              id="breakDuration"
+              value={breakDuration}
+              onChange={(event) => setBreakDuration(event.target.value)}
+              min="1"
+              required
+            />
+          </div>
+          <div className="d-grid gap-2">
+            <button type="submit" className="btn btn-primary">
+              Generate Timetable
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+}
+
+export default App;
