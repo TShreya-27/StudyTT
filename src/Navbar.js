@@ -3,6 +3,7 @@ import logo from "./logo.png";
 import "./App.css";
 import Homepage from "./Homepage";
 import Timetable from "./Timetable";
+import { Link } from "react-router-dom";
 export default function Navbar() {
   return (
     <nav
@@ -10,15 +11,9 @@ export default function Navbar() {
       style={{ backgroundColor: "black" }}
     >
       <div className="container-fluid">
-        <a className="navbar-brand" href="/">
-          <img
-            src={logo}
-            alt="Time-Table Icon"
-            href={Homepage}
-            width="150"
-            height="60"
-          />
-        </a>
+        <Link className="navbar-brand" to={Homepage}>
+          <img src={logo} alt="Time-Table Icon" width="150" height="60" />
+        </Link>
         <button
           className="navbar-toggler"
           type="button"
@@ -34,23 +29,23 @@ export default function Navbar() {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
             <li className="nav-item">
-              <a
+              <Link
                 className="nav-link active"
                 aria-current="page"
-                href="Homepage.js"
+                to={Homepage}
                 style={{ color: "white" }}
               >
                 Home
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a
+              <Link
+                to={Timetable}
                 className="nav-link active"
-                href={Timetable}
                 style={{ color: "white" }}
               >
                 Generate Time-Table
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
